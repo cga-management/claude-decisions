@@ -1,0 +1,17 @@
+{
+  "name": "decisions",
+  "version": "0.2.0",
+  "description": "Tracks open decisions Claude raises in a side pane so you can answer them against a reference while work continues",
+  "author": {
+    "name": "CGA Management",
+    "url": "https://github.com/cga-management"
+  },
+  "repository": "https://github.com/cga-management/claude-decisions",
+  "keywords": [
+    "claude-code",
+    "mod",
+    "decisions"
+  ],
+  "types": "./types/index.d.ts",
+  "license": "MIT"
+}

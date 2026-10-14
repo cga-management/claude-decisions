@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "claude-decisions",
+  "owner": {
+    "name": "CGA Management",
+    "url": "https://github.com/cga-management"
+  },
+  "plugins": [
+    {
+      "name": "decisions",
+      "description": "A Decisions pane that tracks the open decisions Claude raises (D1, D2, ...) so you can answer them against a reference while work continues.",
+      "version": "0.2.0",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}
