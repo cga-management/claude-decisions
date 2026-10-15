@@ -4,15 +4,7 @@ A Claude Code mod that stops open decisions getting lost in the chat.
 
 When Claude needs you to choose something (an approach, an assumption, a missing fact), it logs the question as a decision with a reference: D1, D2, and so on. The decisions sit in a side pane while work carries on, and you answer them whenever you are ready.
 
-```
-Open (2)
-▾ D1 Postgres or SQLite for the cache?
-    SQLite is simpler to deploy; Postgres if we expect concurrent writers.
-    [ SQLite ] [ Postgres ]
-    Decision: ____________ (record)
-▸ D2 Rename the API route?
-▸ Resolved (3)
-```
+![The decisions pane beside a Claude Code session, with two open decisions and four resolved ones](screenshot.png)
 
 ## Install
 
