@@ -427,21 +427,53 @@ export const register: Register = on => {
         ))}
         {resolved.length > 0 && (
           <Box flexDirection="column" marginTop={1}>
-            <Button key="toggle-resolved" plain onPress={() => update($, isResolvedShown, v => !v)}>
-              {isShown ? '▾' : '▸'} Resolved ({resolved.length})
-            </Button>
+            <Box gap={2}>
+              <Button key="toggle-resolved" plain onPress={() => update($, isResolvedShown, v => !v)}>
+                {isShown ? '▾' : '▸'} Resolved ({resolved.length})
+              </Button>
+              {isShown && (
+                <Button
+                  key="expand-resolved"
+                  plain
+                  dimColor
+                  label={resolved.every(d => d.isExpanded) ? 'collapse all' : 'expand all'}
+                  onPress={() => {
+                    const isOpening = !resolved.every(d => d.isExpanded)
+
+                    return setList($, items =>
+                      items.map(d => (d.answer !== undefined ? { ...d, isExpanded: isOpening } : d)),
+                    )
+                  }}
+                />
+              )}
+            </Box>
             {isShown &&
               resolved.map(d => (
-                <Box key={d.id} flexDirection="column" paddingLeft={2}>
-                  <Text dimColor wrap="truncate-end">
-                    {d.id} {d.question}
-                  </Text>
-                  <Text wrap="wrap">
-                    {'  '}→ {d.answer}
-                    <Text dimColor>
-                      {d.isClosedInChat === true ? ' (settled in chat)' : d.isDelivered ? '' : ' (not yet sent)'}
+                <Box key={d.id} flexDirection="column" paddingLeft={2} marginBottom={d.isExpanded ? 1 : 0}>
+                  <Box>
+                    <Button key={`toggle-${d.id}`} plain dimColor onPress={() => toggle(d.id)}>
+                      {d.isExpanded ? '▾' : '▸'} {d.id}
+                    </Button>
+                    <Text dimColor wrap={d.isExpanded ? 'wrap' : 'truncate-end'}> {d.question}</Text>
+                  </Box>
+                  {d.isExpanded && d.detail !== undefined && (
+                    <Box paddingLeft={4}>
+                      <Text italic dimColor wrap="wrap">{d.detail}</Text>
+                    </Box>
+                  )}
+                  {d.isExpanded && d.options.length > 0 && (
+                    <Box paddingLeft={4}>
+                      <Text dimColor wrap="wrap">Options: {d.options.join(' | ')}</Text>
+                    </Box>
+                  )}
+                  <Box paddingLeft={4}>
+                    <Text wrap={d.isExpanded ? 'wrap' : 'truncate-end'}>
+                      → {d.answer}
+                      <Text dimColor>
+                        {d.isClosedInChat === true ? ' (settled in chat)' : d.isDelivered ? '' : ' (not yet sent)'}
+                      </Text>
                     </Text>
-                  </Text>
+                  </Box>
                 </Box>
               ))}
           </Box>

@@ -28,7 +28,7 @@ Answer `y` to add the marketplace, then pick a scope (user scope loads it in eve
 
 - **Answer in the pane:** click an option, or type in the Decision box and press Enter. Click `▸ D1` to expand or collapse a decision and read its background.
 - **Answer from the prompt:** `/decide D2 <your answer>`, or `/decide D2 drop` to discard one.
-- **`/decisions`** opens the pane; **`/decisions clear`** removes resolved ones.
+- **`/decisions`** opens the pane; **`/decisions clear`** removes resolved ones. Under Resolved, click `▸ D1` (or "expand all") to see a decision in full: question, background, options and answer.
 - **Answered in the chat instead?** Claude closes the decision itself (its `close_decision` tool), and the Resolved list marks it "settled in chat".
 - The status line shows how many decisions are open.
 

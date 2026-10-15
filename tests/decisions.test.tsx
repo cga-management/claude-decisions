@@ -150,5 +150,29 @@ describe('decisions', () => {
     expect(await ui.find({ type: 'Text', text: /settled in chat/ })).toBeDefined()
     await ui.unmount()
   })
+
+  test('a resolved decision expands to show its background, options and answer', async ($, on) => {
+    stubEngine(on)
+    await $.session.start(START)
+    await $.tool.call({
+      tool: RAISE,
+      question: 'Postgres or SQLite?',
+      options: ['Postgres', 'SQLite'],
+      detail: 'SQLite is simpler to deploy.',
+    })
+    await $.command.run(decide('D1 SQLite'))
+
+    const ui = await $.ui.mount({ plugin: 'decisions', surface: 'terminal', ...PANE })
+    await ui.press({ key: 'toggle-resolved' })
+    expect(await ui.find({ type: 'Text', text: /SQLite is simpler/ })).toBeUndefined()
+
+    await ui.press({ key: 'toggle-D1' })
+    expect(await ui.find({ type: 'Text', text: /SQLite is simpler/ })).toBeDefined()
+    expect(await ui.find({ type: 'Text', text: /Options: Postgres \| SQLite/ })).toBeDefined()
+
+    await ui.press({ key: 'expand-resolved' })
+    expect(await ui.find({ type: 'Text', text: /SQLite is simpler/ })).toBeUndefined()
+    await ui.unmount()
+  })
 })
 

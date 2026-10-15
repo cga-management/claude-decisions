@@ -1,6 +1,6 @@
 {
   "name": "decisions",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Tracks open decisions Claude raises in a side pane so you can answer them against a reference while work continues",
   "author": {
     "name": "CGA Management",

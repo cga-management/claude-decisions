@@ -9,7 +9,7 @@
     {
       "name": "decisions",
       "description": "A Decisions pane that tracks the open decisions Claude raises (D1, D2, ...) so you can answer them against a reference while work continues.",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "source": "./",
       "category": "productivity"
     }
